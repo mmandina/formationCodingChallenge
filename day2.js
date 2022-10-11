@@ -4,9 +4,48 @@
 
 function spiralTraversal(matrix){
 let traversed=[];
-for(let i=0;i<matrix[0].length;i++){
-    traversed.push()
+let rowBegin=0;
+let rowEnd=matrix.length-1
+let columnBegin=0
+let columnEnd=matrix[0].length-1
+let direction="right"
+while(rowBegin<=rowEnd && columnBegin<=columnEnd){
+    switch(direction){
+
+case "right":
+    for(let i=columnBegin;i<=columnEnd;i++){
+traversed.push(matrix[rowBegin][i])
+    }
+    direction="down";
+    rowBegin++;
+    break;
+
+case "down":
+    for(let i=rowBegin;i<=rowEnd;i++){
+        traversed.push(matrix[i][columnEnd])
+            }
+            direction="left";
+            columnEnd--;
+            break;
+case "left":
+    for(let i=columnEnd;i>=columnBegin;i--){
+        traversed.push(matrix[rowEnd][i])
+    }
+direction="up"
+rowEnd--;
+break;
+
+case "up":
+
+for(let i=rowEnd;i>=rowBegin;i--){
+    traversed.push(matrix[i][columnBegin])
 }
+direction="right";
+columnBegin++;
+break;
+    }
+}
+return traversed
 }
 
 let matrix=
@@ -16,3 +55,6 @@ let matrix=
 [9,   10,  11,  12],
 [13,  14,  15,  16 ]
 ];
+
+
+console.log(spiralTraversal(matrix))
